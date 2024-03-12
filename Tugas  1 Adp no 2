@@ -1,0 +1,26 @@
+uses crt;
+
+var
+  sisi,tinggi,luas,miring,datar,tegak,volume:real;
+
+begin
+clrscr;
+ writeln('Tugas Modul 1 shift 2 No.2');
+ writeln('Nama : Raja barliansyah');
+ writeln('NIM : 2310432042');
+ WriteLn('');
+ writeln('diketahui :');
+ write('Sisi Alas =');
+ readln(sisi);
+ write('Tinggi Limas =');
+ readln(tinggi);
+ write('Sisi Datar Segitiga=');
+ readln(datar);
+ miring:=sqrt((tinggi*tinggi)+(datar*datar));
+ volume:=(1/3)*sisi*sisi*tinggi;
+ WriteLn('');
+ writeln('Volume Limas Segi Empat =',volume);
+ luas:=(sisi*sisi)+(4*(1/2)*sisi*miring);
+ Writeln('Luas Permukaan Limas Segi Empat =',luas);
+ readln;
+end.
