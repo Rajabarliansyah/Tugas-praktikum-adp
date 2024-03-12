@@ -1,0 +1,33 @@
+uses crt;
+var
+ kalkulus,andat,pengmat,fisdas,kimdas,bing,bindo,agama,sks,ip:real;
+ 
+begin
+clrscr;
+  WriteLn('tugas modul 1 shift 2 no.1');
+  WriteLn('Nama : Raja barliansyah');
+  writeln('NIM : 2310432042');
+  WRIteLN('');
+  write('kalkulus =');
+  readln(kalkulus);
+  write('analisis data =');
+  readln(andat);
+  write('pengantar matematika =');
+  readln(pengmat);
+  write('fisika dasar =');
+  readln(fisdas);
+  write('kimia dasar =');
+  readln(kimdas);
+  write('bahasa inggris =');
+  readln(bing);
+  write('bahasa Indonesia =');
+  readln(bindo);
+  write('agama =');
+  readln(agama);
+  write('banyak sks =');
+  readln(sks);
+  writeln('');
+  ip:=((3*kalkulus)+(3*andat)+(3*pengmat)+(2*fisdas)+(2*kimdas)+(2*bing)+(2*bindo)+(2*agama))/sks;
+  writeln('IP SEMESTER 1 =',ip);
+  readln;
+end.
