@@ -1,0 +1,95 @@
+var
+jakarta banten bekasi bandung surabaya depol tujuan kelas jumlah diskon, total totalakhir
+
+begin
+
+writeln("Tugas Modul 2 shift 2') writeln("Nama Raja Bar Lansyah)
+
+writeln("NIM: 2310432042'3
+
+writeln("")
+
+jakarta 350000
+
+banten 250000
+
+bekasi 300000
+
+bandung 400000
+
+surabaya-350000
+
+depok: 400000
+
+ekonomi 10000
+
+bisnis 15000
+
+first: 20000
+
+writeln('bus PT ANS Lintas Jawa')
+
+writeln("Tujuan
+
+writeln('1. Jakarta Rp. jakarta
+
+writeln('2. hanten Rp., banten
+
+writeln('3. bekasi Rp bekasi writeln('4. bandung Rp bandung
+
+writeln('5. surabaya Rp., surabaya writeln('s, depok Rp. depok
+
+writeln('Tujuan yang dipiltin
+
+readin tujuan
+
+writeln()
+
+If tujuan-thes harga 150000
+
+LF tujuan 2 harga 250000 then wise if tujuan 3) then harga 300000 else if tujuan then harga 400000 else if tujuan-5) then harga 350000 else if tujuan 6) then harga 400000
+
+writeln("Kelas (biaya tambahan))
+
+writeln('1. ekunows class Rp., ekonomi writeln( 2. bisnis class Rp., bisnis
+
+writeln(3. first class: Rp. first
+
+write("kelas yang dipilih readini kelas
+
+if kelas-1 then biaya 10000
+
+if kalas 2) then blaya 15000 if kelas then blaya 20000
+
+write('jumlah:) readin jumlah
+
+total jumlah harga biaya
+
+it jumlah) then
+
+diskon 0.05 total
+
+if(jumlah then diskon 05 total
+
+jumlah 5) then
+
+diskom. 05 total
+
+it Jumlah 3) then diskon 06 total
+
+jumlah 5) then diskon 01 total
+
+totalakhir total diskon
+
+writeln(')
+
+writeln(tujuan depok writeln( kelas bisnis class')
+
+writeln('jumlah tiket 4)
+
+writeln('total p., diskon
+
+writeln('total akhir Rp.totalakhir
+
+readln
+end.
