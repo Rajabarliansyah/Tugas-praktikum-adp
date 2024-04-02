@@ -1,0 +1,8 @@
+def ganti_vokal(lirik, huruf_pengganti):
+	vokal= 'aiueo'
+	return ' '.join( huruf_pengganti if char in vokal else char for char in lirik)
+lirik_lagu = input("masukkan lirik lagu: ")
+huruf_pengganti = input("masukkan huruf pengganti untuk vokal: ")
+	
+lirik_baru = ganti_vokal(lirik_lagu, huruf_pengganti)
+print("lirik baru:",lirik_baru)
