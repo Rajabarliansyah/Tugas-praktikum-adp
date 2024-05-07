@@ -1,0 +1,45 @@
+def tampilkan_nilai(nama_mahasiswa, nilai_ujian):
+    print("Data Nilai Ujian:")
+    print("Nama Mahasiswa\tPancasila\tAgama\tKalkulus")
+    
+    for i in range(len(nama_mahasiswa)):
+        print(nama_mahasiswa[i], end="\t\t")
+        for j in range(len(nilai_ujian[i])):
+            print(nilai_ujian[i][j], end="\t\t")
+        print()
+
+def hitung_rata_rata(nama_mahasiswa, nilai_ujian):
+    print("\nRata-rata Nilai Ujian:")
+    for i in range(len(nama_mahasiswa)):
+        rata_rata = sum(nilai_ujian[i]) / len(nilai_ujian[i])
+        print(f"{nama_mahasiswa[i]}: {rata_rata:.2f}")
+
+def nilai_tertinggi_terendah(nama_mahasiswa, nilai_ujian, mata_kuliah):
+    print("\nNilai Tertinggi dan Terendah:")
+    for i in range(len(mata_kuliah)):
+        nilai_mata_kuliah = [nilai[i] for nilai in nilai_ujian]
+        nilai_tertinggi = max(nilai_mata_kuliah)
+        nilai_terendah = min(nilai_mata_kuliah)
+        index_tertinggi = nilai_mata_kuliah.index(nilai_tertinggi)
+        index_terendah = nilai_mata_kuliah.index(nilai_terendah)
+        print(f"Mata Kuliah {mata_kuliah[i]}:")
+        print(f"  Nilai Tertinggi: {nilai_tertinggi} ({nama_mahasiswa[index_tertinggi]})")
+        print(f"  Nilai Terendah: {nilai_terendah} ({nama_mahasiswa[index_terendah]})")
+
+# Data Nilai Ujian
+nama_mahasiswa = ["rara", "riri", "ruru", "rere", "roro"]
+nilai_ujian = [
+    [70, 80, 90],
+    [65, 75, 95],
+    [90, 85, 75],
+    [75, 60, 80],
+    [75, 70, 75]
+]
+mata_kuliah = ["Pancasila", "Agama", "Kalkulus"]
+
+tampilkan_nilai(nama_mahasiswa, nilai_ujian)
+
+hitung_rata_rata(nama_mahasiswa, nilai_ujian)
+
+nilai_tertinggi_terendah(nama_mahasiswa, nilai_ujian, mata_kuliah)
+    
