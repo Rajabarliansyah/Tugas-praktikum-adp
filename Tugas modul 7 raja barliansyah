@@ -1,0 +1,40 @@
+def konversi_suhu(suhu, satuan):
+    if satuan == 'C':
+        fahrenheit = (suhu * 9/5) + 32
+        reamur = suhu * 4/5
+        kelvin = suhu + 273.15
+        print(f"suhu {suhu} derajat Celcius dapat dikonversi menjadi:")
+        print(f"{'Fahrenheit':<15} | {fahrenheit:.2f}")
+        print(f"{'Reaumur':<15} | {reamur:.2f}")
+        print(f"{'Kelvin':<15} | {kelvin:.2f}")
+    elif satuan == 'F':
+        celcius = (suhu - 32) * 5/9
+        reamur = (suhu - 32) * 4/9
+        kelvin = (suhu + 459.67) * 5/9
+        print(f"suhu {suhu} derajat Fahrenheit dapat dikonversi menjadi:")
+        print(f"{'Celcius':<15} | {celcius:.2f}")
+        print(f"{'Reaumur':<15} | {reamur:.2f}")
+        print(f"{'Kelvin':<15} | {kelvin:.2f}")
+    elif satuan == 'R':
+        celcius = suhu * 5/4
+        fahrenheit = (suhu * 9/4) + 32
+        kelvin = (suhu * 5/4) + 273.15
+        print(f"suhu {suhu} derajat Reaumur dapat dikonversi menjadi:")
+        print(f"{'Celcius':<15} | {celcius:.2f}")
+        print(f"{'Fahrenheit':<15} | {fahrenheit:.2f}")
+        print(f"{'Kelvin':<15} | {kelvin:.2f}")
+    elif satuan == 'K':
+        celcius = suhu - 273.15
+        fahrenheit = (suhu * 9/5) - 459.67
+        reamur = (suhu - 273.15) * 4/5
+        print(f"suhu {suhu} Kelvin dapat dikonversi menjadi:")
+        print(f"{'Celcius':<15} | {celcius:.2f}")
+        print(f"{'Fahrenheit':<15} | {fahrenheit:.2f}")
+        print(f"{'Reaumur':<15} | {reamur:.2f}")
+    else:
+        print("Satuan suhu yang dimasukkan tidak valid")
+
+suhu = float(input("Masukkan suhu: "))
+satuan = input("Masukkan satuan suhu (C, F, R, K): ").upper()
+
+konversi_suhu(suhu, satuan)
