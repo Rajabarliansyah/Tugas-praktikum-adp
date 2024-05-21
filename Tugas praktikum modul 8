@@ -1,0 +1,59 @@
+print ("Tugas Modul 8 Shift 2")
+print ("Nama    : Raja Barliansyah ")
+print ("NIM     : 2310432042")
+print (" ")
+
+data = {
+    'Judul' : 'Senja',
+    'Pengarang' : 'Aden',
+    'Penerbit' : 'Aden Pustaka',
+    'Tempat Terbit' : 'Padang',
+    'Tahun Terbit' : '2024',
+    'Jumlah Halaman' : '300'   
+}
+
+def simpan_data_novel(data):
+    with open("datanovel.txt", "a") as file:
+        for key, value in data.items():
+            file.write(f"{value} ")
+        file.write("\n")
+    
+def hapus_data_novel(judul_novel):
+    with open("datanovel.txt", "r") as file:
+        lines = file.readlines()
+        
+    with open("datanovel.txt", "w") as file:
+        for line in lines:
+            if judul_novel not in line: 
+                file.write(line)
+    
+def tampilkan_data_novel():
+     with open("datanovel.txt","r") as f :
+         print(f.read())
+
+while True:
+   print ("1. Simpan data novel")
+   print ("2. Hapus data novel")
+   print ("3. Tampilkan data novel")
+   print ("4. Keluar")
+
+   pilih = input ("Pilih Menu 1/2/3/4: ")
+
+   if pilih == "1":
+       simpan_data_novel(data)
+       print("Data Telah Disimpan\n")
+
+   elif pilih == "2":
+       judul= input("Masukkan judul yang ingin dihapus: ")
+       hapus_data_novel(judul)
+       print(f"Data {judul} telah dihapus\n")
+
+   elif pilih == "3":
+      tampilkan_data_novel()
+      print()
+
+   elif pilih == "4":
+      break
+
+   else:
+      print("Masukkan menu valid\n")
