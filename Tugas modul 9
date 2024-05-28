@@ -1,0 +1,37 @@
+import os
+from termcolor import cprint
+
+def clear_console():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def print_logo():
+    logo_lines = [
+        " "*7 + "VV       VV" + " "*6 + "IIIIIII" + " "*6+ "SSSSSS" + " "*10 + "AA     ",
+        " "*8 + "VV     VV" + " "*9 + "III" + " "*8 + "SS" + " "*13+ "A  A    ",
+        " "*9+ "VV   VV" + " "*10 + "III" + " "*8+ "SSSSSS" + " "*8+ "AAAAAA   ",
+        " "*10+ "VV VV" + " "*11 + "III" + " "*12+ "SS" + " "*7+ "AA    AA  ",
+        " "*11+ "VV" + " "*11 + "IIIIIII" + " "*6+ "SSSSSS" + " "*6+ "AA      AA"
+    ]
+
+    for line in logo_lines:
+        cprint(line, 'blue', 'on_white')
+
+def print_bands():
+    band_width = 60
+    blue_band = " " * band_width
+    yellow_band = " " * band_width
+
+    for _ in range(2):
+        cprint(blue_band, 'white', 'on_blue')
+    
+    print_logo()
+    
+    for _ in range(2):
+        cprint(yellow_band, 'white', 'on_yellow')
+
+def main():
+    clear_console()
+    print_bands()
+
+if __name__ == "__main__":
+    main()
