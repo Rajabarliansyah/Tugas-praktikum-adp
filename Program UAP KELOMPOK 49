@@ -1,0 +1,138 @@
+import pygame
+import random
+import os
+
+os.system('cls')
+
+pygame.init()
+
+lebar_layar = 800
+tinggi_layar = 600
+layar = pygame.display.set_mode((lebar_layar, tinggi_layar))
+pygame.display.set_caption("PONG")
+
+PUTIH = (255, 255, 255)
+HITAM = (0, 0, 0)
+
+lebar_tongkat = 20
+tinggi_tongkat = 100
+kecepatan_tongkat = 5
+
+ukuran_bola = 15
+kecepatan_bola = [4, 4]
+
+
+bola_data = [lebar_layar // 2 - ukuran_bola // 2, tinggi_layar // 2 - ukuran_bola // 2, *kecepatan_bola]
+permainan_data = {
+    'tongkat1': {'posisi': [50, tinggi_layar // 2 - tinggi_tongkat // 2]},
+    'tongkat2': {'posisi': [lebar_layar - 50 - lebar_tongkat, tinggi_layar // 2 - tinggi_tongkat // 2]},
+    'bola': {'posisi': bola_data[:2], 'kecepatan': bola_data[2:]}
+}
+
+def gambar_tongkat(tongkat):
+    pygame.draw.rect(layar, PUTIH, pygame.Rect(tongkat['posisi'][0], tongkat['posisi'][1], lebar_tongkat, tinggi_tongkat))
+
+def gambar_bola(bola):
+    pygame.draw.ellipse(layar, PUTIH, pygame.Rect(bola['posisi'][0], bola['posisi'][1], ukuran_bola, ukuran_bola))
+
+def simpan_hasil(pemain1, pemain2, skor1, skor2):
+    with open("hasil_permainan.txt", "a") as file:
+        file.write(f"{pemain1} {skor1} - {skor2} {pemain2}\n")
+
+def layar_mulai():
+    font = pygame.font.SysFont(None, 50)
+    text = font.render("Tekan Enter untuk Memulai", True, PUTIH)
+    text_rect = text.get_rect(center=(lebar_layar // 2, tinggi_layar // 2))
+
+    menunggu = True
+    while menunggu:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+                menunggu = False
+
+        layar.fill(HITAM)
+        layar.blit(text, text_rect)
+        pygame.display.flip()
+
+
+def permainan(pemain1, pemain2):
+    clock = pygame.time.Clock()
+    skor1 = 0
+    skor2 = 0
+    skor_maks = 15
+
+    font = pygame.font.SysFont(None, 50)
+    berjalan = True
+
+    while berjalan:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                berjalan = False
+
+        tombol = pygame.key.get_pressed()
+        if tombol[pygame.K_w] and permainan_data['tongkat1']['posisi'][1] > 0:
+            permainan_data['tongkat1']['posisi'][1] -= kecepatan_tongkat
+        if tombol[pygame.K_s] and permainan_data['tongkat1']['posisi'][1] + tinggi_tongkat < tinggi_layar:
+            permainan_data['tongkat1']['posisi'][1] += kecepatan_tongkat
+
+        if tombol[pygame.K_UP] and permainan_data['tongkat2']['posisi'][1] > 0:
+            permainan_data['tongkat2']['posisi'][1] -= kecepatan_tongkat
+        if tombol[pygame.K_DOWN] and permainan_data['tongkat2']['posisi'][1] + tinggi_tongkat < tinggi_layar:
+            permainan_data['tongkat2']['posisi'][1] += kecepatan_tongkat
+
+        permainan_data['bola']['posisi'][0] += permainan_data['bola']['kecepatan'][0]
+        permainan_data['bola']['posisi'][1] += permainan_data['bola']['kecepatan'][1]
+
+        if permainan_data['bola']['posisi'][1] <= 0 or permainan_data['bola']['posisi'][1] >= tinggi_layar - ukuran_bola:
+            permainan_data['bola']['kecepatan'][1] *= -1
+
+        if permainan_data['bola']['posisi'][0] <= permainan_data['tongkat1']['posisi'][0] + lebar_tongkat and permainan_data['tongkat1']['posisi'][1] <= permainan_data['bola']['posisi'][1] <= permainan_data['tongkat1']['posisi'][1] + tinggi_tongkat:
+            permainan_data['bola']['kecepatan'][0] *= -1
+
+        if permainan_data['bola']['posisi'][0] >= permainan_data['tongkat2']['posisi'][0] - ukuran_bola and permainan_data['tongkat2']['posisi'][1] <= permainan_data['bola']['posisi'][1] <= permainan_data['tongkat2']['posisi'][1] + tinggi_tongkat:
+            permainan_data['bola']['kecepatan'][0] *= -1
+
+        if permainan_data['bola']['posisi'][0] <= 0:
+            skor2 += 1
+            if skor2 >= skor_maks:
+                berjalan = False
+            else:
+                permainan_data['bola']['posisi'] = [lebar_layar // 2 - ukuran_bola // 2, tinggi_layar // 2 - ukuran_bola // 2]
+                permainan_data['bola']['kecepatan'] = [random.choice([-4, 4]), random.choice([-4, 4])]
+
+        if permainan_data['bola']['posisi'][0] >= lebar_layar - ukuran_bola:
+            skor1 += 1
+            if skor1 >= skor_maks:
+                berjalan = False
+            else:
+                permainan_data['bola']['posisi'] = [lebar_layar // 2 - ukuran_bola // 2, tinggi_layar // 2 - ukuran_bola // 2]
+                permainan_data['bola']['kecepatan'] = [random.choice([-4, 4]), random.choice([-4, 4])]
+
+        layar.fill(HITAM)
+        gambar_tongkat(permainan_data['tongkat1'])
+        gambar_tongkat(permainan_data['tongkat2'])
+        gambar_bola(permainan_data['bola'])
+
+        tampil_skor = font.render(f"{skor1} - {skor2}", True, PUTIH)
+        layar.blit(tampil_skor, (lebar_layar // 2 - tampil_skor.get_width() // 2, 10))
+
+        pygame.display.flip()
+        clock.tick(60)
+
+    simpan_hasil(pemain1, pemain2, skor1, skor2)
+
+    if skor1 >= skor_maks:
+        print(f"{pemain1} menang!")
+    elif skor2 >= skor_maks:
+        print(f"{pemain2} menang!")
+
+    pygame.quit()
+
+pemain1 = input("Masukkan nama pemain 1: ")
+pemain2 = input("Masukkan nama pemain 2: ")
+
+layar_mulai()
+permainan(pemain1, pemain2)
